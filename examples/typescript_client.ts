@@ -20,10 +20,10 @@ async function fetchWithPayment(endpoint: string): Promise<any> {
   } catch (error: any) {
     if (error.response?.status === 402) {
       const paymentReq: PaymentRequirement = error.response.data;
-      
+
       // Option 1: Use PayAI Network
       const paymentToken = await authorizePayAI(paymentReq);
-      
+
       const retryResponse = await axios.get(
         `https://api.example.com${endpoint}`,
         {
@@ -32,7 +32,7 @@ async function fetchWithPayment(endpoint: string): Promise<any> {
           }
         }
       );
-      
+
       return retryResponse.data;
     }
     throw error;

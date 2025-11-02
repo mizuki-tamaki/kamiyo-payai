@@ -206,17 +206,17 @@ import json
 def fetch_with_payment(endpoint: str):
     """Fetch protected endpoint with automatic payment handling"""
     response = httpx.get(f"https://api.example.com{endpoint}")
-    
+
     if response.status_code == 402:
         payment_data = response.json()
-        
+
         # Option 1: PayAI Network (fast, recommended)
         token = authorize_payai(payment_data)
         response = httpx.get(
             f"https://api.example.com{endpoint}",
             headers={"X-PAYMENT": token}
         )
-        
+
         # Option 2: Direct on-chain
         # tx_hash = send_usdc(payment_data["merchant"], payment_data["amount"])
         # response = httpx.get(
@@ -226,7 +226,7 @@ def fetch_with_payment(endpoint: str):
         #         "x-payment-chain": "base"
         #     }
         # )
-    
+
     return response.json()
 
 # Usage
@@ -276,15 +276,15 @@ async function fetchWithPayment(endpoint: string): Promise<any> {
   } catch (error: any) {
     if (error.response?.status === 402) {
       const paymentReq = error.response.data;
-      
+
       // Authorize via PayAI
       const token = await authorizePayAI(paymentReq);
-      
+
       const retry = await axios.get(
         `https://api.example.com${endpoint}`,
         { headers: { 'X-PAYMENT': token } }
       );
-      
+
       return retry.data;
     }
     throw error;
@@ -528,6 +528,4 @@ See [LICENSE](LICENSE) for full terms.
 - **Issues:** [GitHub Issues](https://github.com/mizuki-tamaki/kamiyo-payai/issues)
 - **Email:** dev@kamiyo.ai
 - **Security:** security@kamiyo.ai
-
----
 
