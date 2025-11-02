@@ -531,4 +531,3 @@ See [LICENSE](LICENSE) for full terms.
 
 ---
 
-Built with  for the decentralized web.
