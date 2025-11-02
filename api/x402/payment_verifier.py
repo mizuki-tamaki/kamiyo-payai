@@ -104,20 +104,20 @@ class PaymentVerifier:
                     self.web3_instances[chain_name] = Web3(Web3.HTTPProvider(config.rpc_url))
                     is_connected = self.web3_instances[chain_name].is_connected()
                     if is_connected:
-                        logger.info(f"✅ Connected to {chain_name} at {config.rpc_url}")
+                        logger.info(f"[OK] Connected to {chain_name} at {config.rpc_url}")
                     else:
-                        logger.warning(f"⚠️  Failed to connect to {chain_name} at {config.rpc_url}")
+                        logger.warning(f"[WARNING]  Failed to connect to {chain_name} at {config.rpc_url}")
                 except Exception as e:
-                    logger.error(f"❌ Error connecting to {chain_name}: {e}")
+                    logger.error(f"[FAIL] Error connecting to {chain_name}: {e}")
 
         # Initialize Solana client
         try:
             solana_config = self.chains.get('solana')
             if solana_config:
                 self.solana_client = AsyncClient(solana_config.rpc_url)
-                logger.info(f"✅ Initialized Solana client at {solana_config.rpc_url}")
+                logger.info(f"[OK] Initialized Solana client at {solana_config.rpc_url}")
         except Exception as e:
-            logger.error(f"❌ Error initializing Solana client: {e}")
+            logger.error(f"[FAIL] Error initializing Solana client: {e}")
     
     async def verify_payment(
         self, 
@@ -325,7 +325,7 @@ class PaymentVerifier:
             risk_score = await self._calculate_risk_score(tx_hash, chain, from_address)
 
             # Payment is valid!
-            logger.info(f"✅ Verified {chain} payment: {amount_usdc} USDC from {from_address}")
+            logger.info(f"[OK] Verified {chain} payment: {amount_usdc} USDC from {from_address}")
 
             return PaymentVerification(
                 is_valid=True,
@@ -353,7 +353,7 @@ class PaymentVerifier:
                 error_message="Transaction not found on chain"
             )
         except Exception as e:
-            logger.error(f"❌ Error verifying payment on {chain}: {e}")
+            logger.error(f"[FAIL] Error verifying payment on {chain}: {e}")
             return PaymentVerification(
                 is_valid=False,
                 tx_hash=tx_hash,
@@ -543,7 +543,7 @@ class PaymentVerifier:
             risk_score = await self._calculate_risk_score(tx_hash, 'solana', from_address)
 
             # Payment is valid!
-            logger.info(f"✅ Verified Solana payment: {amount_usdc} USDC from {from_address}")
+            logger.info(f"[OK] Verified Solana payment: {amount_usdc} USDC from {from_address}")
 
             return PaymentVerification(
                 is_valid=True,
@@ -558,7 +558,7 @@ class PaymentVerifier:
             )
 
         except Exception as e:
-            logger.error(f"❌ Error verifying Solana payment: {e}")
+            logger.error(f"[FAIL] Error verifying Solana payment: {e}")
             return PaymentVerification(
                 is_valid=False,
                 tx_hash=tx_hash,

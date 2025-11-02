@@ -103,7 +103,7 @@ Client              Server              PayAI           Blockchain
   ├──────────────────>│                   │                 │
   │                   │  Verify token     │                 │
   │                   ├──────────────────>│                 │
-  │                   │  Valid ✓          │                 │
+  │                   │  Valid [OK]          │                 │
   │                   │<──────────────────┤                 │
   │  200 OK           │                   │                 │
   │  {data}           │                   │                 │
@@ -395,7 +395,7 @@ pytest api/x402/tests/ --cov=api/x402 --cov-report=html
 open htmlcov/index.html
 ```
 
-**Test Results:** All 31 tests passing ✓
+**Test Results:** All 31 tests passing [OK]
 
 ## Production Deployment
 
@@ -473,14 +473,14 @@ Throughput:
 ┌─────────────────────────────────────────────┐
 │         Security Features                    │
 ├─────────────────────────────────────────────┤
-│  ✓ Fail-closed design                       │
-│  ✓ Payment replay prevention                │
-│  ✓ Transaction age validation (7 day max)   │
-│  ✓ Minimum payment threshold ($0.10)        │
-│  ✓ No credential storage                    │
-│  ✓ Read-only RPC operations                 │
-│  ✓ Rate limiting per IP                     │
-│  ✓ Input validation (Pydantic)              │
+│  [OK] Fail-closed design                       │
+│  [OK] Payment replay prevention                │
+│  [OK] Transaction age validation (7 day max)   │
+│  [OK] Minimum payment threshold ($0.10)        │
+│  [OK] No credential storage                    │
+│  [OK] Read-only RPC operations                 │
+│  [OK] Rate limiting per IP                     │
+│  [OK] Input validation (Pydantic)              │
 └─────────────────────────────────────────────┘
 ```
 
@@ -531,4 +531,4 @@ See [LICENSE](LICENSE) for full terms.
 
 ---
 
-Built with ❤️ for the decentralized web.
+Built with  for the decentralized web.

@@ -75,7 +75,7 @@ Client                  Server                 PayAI              Blockchain
   ├───────────────────────>│                     │                    │
   │                        │  Verify token       │                    │
   │                        ├────────────────────>│                    │
-  │                        │  Valid ✓            │                    │
+  │                        │  Valid [OK]            │                    │
   │                        │<────────────────────┤                    │
   │                        │                     │                    │
   │  200 OK                │                     │                    │
